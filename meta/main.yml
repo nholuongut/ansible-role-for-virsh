@@ -1,0 +1,13 @@
+galaxy_info:
+  author: Isaac Kehle <twitter.com/isaackehle>
+  description: VM Deployment using virsh
+  company: isaackehle
+  license: MIT
+  min_ansible_version: 2.4
+  platforms:
+    - name: Ubuntu
+      versions:
+        - xenial
+  galaxy_tags:
+    - system
+dependencies: []

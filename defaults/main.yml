@@ -1,0 +1,11 @@
+---
+
+flags:            []
+
+default_pwd:      "defaultpwd"
+ssh_user_key:     "/etc/ssl/private/key.pem"
+hostname:         ""
+
+version:          '18.04.1'
+
+vm_old:           ''

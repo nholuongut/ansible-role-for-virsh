@@ -1,0 +1,50 @@
+---
+- name: Install Packages
+  apt:
+    name:
+      - qemu-kvm
+      - qemu
+      - virt-manager
+      - virt-viewer
+      - libvirt-bin
+      - uuid
+      - bridge-utils
+      - libosinfo-bin
+      - ubuntu-vm-builder
+      - libguestfs-tools
+    state: present
+  become: true
+
+- name: Set the groups needed
+  set_fact:
+    virt_groups:
+      - libvirtd
+      - netdev
+      - "{{ libvirt_group }}"
+
+- name: Create the target user
+  user:
+    name: "{{ target_user }}"
+    shell: /bin/bash
+    groups: "{{ virt_groups }}"
+    append: yes
+  when: target_user is defined
+  become: true
+
+- name: Create the remote user
+  user:
+    name: "{{ remote_user }}"
+    shell: /bin/bash
+    groups: "{{ virt_groups }}"
+    append: yes
+  when: remote_user is defined
+  become: true
+
+- name: Create the libvirt user
+  user:
+    name: "{{ libvirt_user }}"
+    shell: /bin/bash
+    groups: "{{ libvirt_group }}"
+    append: yes
+  when: libvirt_user is defined
+  become: true
